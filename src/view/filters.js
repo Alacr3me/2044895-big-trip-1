@@ -1,3 +1,5 @@
+import { createElement } from '../../public/render.js';
+
 export const createFiltersTemplate= () =>(`
 <div class="trip-controls__filters">
 <h2 class="visually-hidden">Filter events</h2>
@@ -20,3 +22,22 @@ export const createFiltersTemplate= () =>(`
   <button class="visually-hidden" type="submit">Accept filter</button>
 </form>
 </div>`);
+
+export default class Filters {
+  #element = null;
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createFiltersTemplate();
+  }
+
+  removeElement() {
+    this.element = null; }
+}

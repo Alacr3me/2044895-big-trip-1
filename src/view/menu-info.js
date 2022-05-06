@@ -1,3 +1,5 @@
+import { createElement } from '../../public/render.js';
+
 export const createMenuInfoTemplate = () => (`
   <section class="trip-main__trip-info  trip-info">
     <div class="trip-info__main">
@@ -10,3 +12,22 @@ export const createMenuInfoTemplate = () => (`
       Total: &euro;&nbsp;<span class="trip-info__cost-value">1230</span>
     </p>
   </section>`);
+
+export default class MenuInfo {
+  #element = null;
+
+  get element() {
+    if (!this.#element) {
+      this.#element = this.template;
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createMenuInfoTemplate();
+  }
+
+  removeElement() {
+    this.element = null; }
+}

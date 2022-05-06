@@ -1,3 +1,5 @@
+import { createElement } from '../../public/render.js';
+
 export const createEditForm= (routePoint) => {
   const { type, city } = routePoint;
 
@@ -182,3 +184,27 @@ export const createEditForm= (routePoint) => {
     </section>
   </form>`);
 };
+
+export default class EditForm {
+  #element = null;
+
+  constructor(routePoint) {
+    this.routePoint = routePoint;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createEditForm(this.routePoint);
+  }
+
+  removeElement() {
+    this.element = null; }
+}
+
